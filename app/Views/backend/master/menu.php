@@ -50,6 +50,27 @@
                 <li class="nav-item"><a class="nav-link" href="<?= base_url('nimda/galeri_kegiatan/add') ?>"><i class="ti-control-record"></i>Tambah Galeri Kegiatan</a></li>
             </ul>
         </li>
+        <li>
+            <a href="javascript: void(0);"><i class="fas fa-images"></i><span>Berita Foto</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+            <ul class="nav-second-level" aria-expanded="false">
+                <li class="nav-item"><a class="nav-link" href="<?= base_url('nimda/berita_foto') ?>"><i class="ti-control-record"></i>List Berita Foto</a></li>
+                <li class="nav-item"><a class="nav-link" href="<?= base_url('nimda/berita_foto/add') ?>"><i class="ti-control-record"></i>Tambah Berita Foto</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript: void(0);"><i class="fas fa-images"></i><span>Video Kegiatan</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+            <ul class="nav-second-level" aria-expanded="false">
+                <li class="nav-item"><a class="nav-link" href="<?= base_url('nimda/video_kegiatan') ?>"><i class="ti-control-record"></i>List Video Kegiatan</a></li>
+                <li class="nav-item"><a class="nav-link" href="<?= base_url('nimda/video_kegiatan/add') ?>"><i class="ti-control-record"></i>Tambah Video Kegiatan</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript: void(0);"><i class="fas fa-book"></i><span>Agenda</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+            <ul class="nav-second-level" aria-expanded="false">
+                <li class="nav-item"><a class="nav-link" href="<?= base_url('nimda/agenda') ?>"><i class="ti-control-record"></i>List Agenda</a></li>
+                <li class="nav-item"><a class="nav-link" href="<?= base_url('nimda/agenda/add') ?>"><i class="ti-control-record"></i>Tambah Agenda</a></li>
+            </ul>
+        </li>
 
         <li>
             <a href="javascript: void(0);"><i class="ti-user"></i><span>Users</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
