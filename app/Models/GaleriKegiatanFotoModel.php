@@ -4,19 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class GaleriModel extends Model
+class GaleriKegiatanFotoModel extends Model
 {
-    protected $table = 'galeri';
-    protected $primaryKey = 'galeri_id';
+    protected $table = 'galeri_kegiatan_foto';
+    protected $primaryKey = 'galeri_kegiatan_foto_id';
 
     protected $returnType = 'object';
     protected $useSoftDeletes = true;
 
     protected $allowedFields = [
-        'users_id',
-        'kategori_id',
-        'galeri_judul',
-        'galeri_gambar',
+        'galeri_kegiatan_id',
+        'galeri_kegiatan_foto_file',
     ];
 
     protected $useTimestamps = true;

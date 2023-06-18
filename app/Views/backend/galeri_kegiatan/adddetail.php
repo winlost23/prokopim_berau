@@ -7,7 +7,7 @@
 
 <script>
     function previewImg() {
-        const sampul = document.querySelector('#kategori_gambar');
+        const sampul = document.querySelector('#galeri_kegiatan_foto_file');
         const sampulLabel = document.querySelector('.custom-file-label');
         const imgPreview = document.querySelector('.img-preview');
 
@@ -31,12 +31,13 @@
             <div class="page-title-box">
                 <div class="float-right">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="<?= base_url() ?>/nimda">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="<?= base_url() ?>/nimda/galeri">Galeri</a></li>
-                        <li class="breadcrumb-item active">Tambah Galeri</li>
+                        <li class="breadcrumb-item"><a href="<?= base_url('nimda') ?>">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="<?= base_url('nimda/galeri_kegiatan') ?>">Galeri</a></li>
+                        <li class="breadcrumb-item"><a href="<?= base_url('nimda/galeri_kegiatan/detail/' . $galeri->galeri_kegiatan_id) ?>">Detail</a></li>
+                        <li class="breadcrumb-item active">Tambah</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Galeri</h4>
+                <h4 class="page-title">Tambah Foto Galeri - <?= $galeri->galeri_kegiatan_judul ?></h4>
             </div>
             <!--end page-title-box-->
         </div>
@@ -47,29 +48,20 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="mt-0 header-title">Form Tambah Galeri</h4>
+                    <h4 class="mt-0 header-title">Form Tambah Galeri - <?= $galeri->galeri_kegiatan_judul ?></h4>
                     <p class="text-muted mb-3">Silahkan lengkapi form dibawah ini...</p>
                     <?= $validation->getErrors() ? $validation->listErrors('my_list') : '' ?>
                     <div class="general-label">
-                        <form method="post" action="<?= base_url('nimda/galeri/save') ?>" enctype="multipart/form-data">
+                        <form method="post" action="<?= base_url('nimda/galeri_kegiatan/saveDetail/' . $galeri->galeri_kegiatan_id) ?>" enctype="multipart/form-data">
                             <?= csrf_field(); ?>
-                            <div class="form-group row">
-                                <label for="nama" class="col-sm-3 col-form-label">Judul</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control <?= ($validation->hasError('kategori_judul')) ? 'is-invalid' : '' ?>" id="kategori_judul" placeholder="Masukkan Judul" name="kategori_judul" value="<?= old('kategori_judul') ?>">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('kategori_judul'); ?>
-                                    </div>
-                                </div>
-                            </div>
                             <div class=" form-group row">
                                 <label for="nama" class="col-sm-3 col-form-label">Gambar</label>
                                 <div class="col-sm-9">
-                                    <input type="file" class="form-control <?= ($validation->hasError('kategori_gambar')) ? 'is-invalid' : '' ?>" id="kategori_gambar" name="kategori_gambar" onchange="previewImg()">
+                                    <input type="file" class="form-control <?= ($validation->hasError('galeri_kegiatan_foto_file')) ? 'is-invalid' : '' ?>" id="galeri_kegiatan_foto_file" name="galeri_kegiatan_foto_file" onchange="previewImg()">
                                     <div class="invalid-feedback">
-                                        <?= $validation->getError('kategori_gambar'); ?>
+                                        <?= $validation->getError('galeri_kegiatan_foto_file'); ?>
                                     </div>
-                                    <label class="custom-file-label" for="kategori_gambar">Pilih Gambar</label>
+                                    <label class="custom-file-label" for="galeri_kegiatan_foto_file">Pilih Gambar</label>
                                     <img src="<?= base_url() ?>/img/default.jpg" class="img-thumbnail img-preview" style="width: 150px;">
                                 </div>
                             </div>
@@ -77,7 +69,7 @@
                             <div class="row">
                                 <div class="col-sm-9 ml-auto">
                                     <button type="submit" class="btn btn-gradient-primary">Submit</button>
-                                    <a href="<?= base_url() ?>/nimda/galeri" class="btn btn-gradient-danger">Cancel</a>
+                                    <a href="<?= base_url('nimda/galeri_kegiatan/detail/' . $galeri->galeri_kegiatan_id) ?>" class="btn btn-gradient-danger">Cancel</a>
                                 </div>
                             </div>
                         </form>

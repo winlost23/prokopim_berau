@@ -26,11 +26,11 @@
                 <div class="float-right">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="<?= base_url() ?>/nimda">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="<?= base_url() ?>/nimda/galeri">Galeri</a></li>
-                        <li class="breadcrumb-item active">Detail Galeri</li>
+                        <li class="breadcrumb-item"><a href="<?= base_url() ?>/nimda/galeri_kegiatan">Galeri Kegiatan</a></li>
+                        <li class="breadcrumb-item active">Detail Foto Galeri</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Detail Galeri - <?= $kategori->kategori_judul ?></h4>
+                <h4 class="page-title">Detail Galeri - <?= $galeri->galeri_kegiatan_judul ?></h4>
             </div>
             <!--end page-title-box-->
         </div>
@@ -42,22 +42,20 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="mt-0 header-title">List Detail Galeri - <?= $kategori->kategori_judul ?></h4>
-                    <p class="text-muted mb-3">Berikut adalah semua data detail galeri <?= $kategori->kategori_judul ?> yang ada pada system ini...</p>
+                    <h4 class="mt-0 header-title">List Detail Galeri - <?= $galeri->galeri_kegiatan_judul ?></h4>
+                    <p class="text-muted mb-3">Berikut adalah semua data detail galeri <?= $galeri->galeri_kegiatan_judul ?> yang ada pada system ini...</p>
                     <?php if (session()->getFlashdata('tipe')) : ?>
                         <div class="alert alert-outline-<?= session()->getFlashdata('tipe') ?> b-round" role="alert">
                             <?= session()->getFlashdata('pesan') ?>
                         </div>
                     <?php endif; ?>
-                    <a href="<?= base_url('nimda/galeri/addDetail/' . $kategori->kategori_id) ?>" class="btn btn-gradient-secondary btn-clipboard" data-clipboard-action="copy" data-clipboard-target="#clipboardTextarea"><i class="fas fa-plus mr-2"></i>Tambah Galeri</a>
+                    <a href="<?= base_url('nimda/galeri_kegiatan/addDetail/' . $galeri->galeri_kegiatan_id) ?>" class="btn btn-gradient-secondary btn-clipboard" data-clipboard-action="copy" data-clipboard-target="#clipboardTextarea"><i class="fas fa-plus mr-2"></i>Tambah Foto Galeri</a>
                     <br><br>
                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                             <tr>
                                 <th width="5%">No</th>
-                                <th>Judul</th>
                                 <th>Gambar</th>
-                                <th>User</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -66,16 +64,14 @@
                         <tbody>
                             <?php
                             $nomor = 1;
-                            foreach ($galeri as $u) :
+                            foreach ($foto as $u) :
                             ?>
                                 <tr>
                                     <td><?= $nomor++ ?></td>
-                                    <td><?= $u->galeri_judul ?></td>
-                                    <td><img src="<?= base_url() ?>/img/galeri/<?= $u->galeri_gambar ?>" alt="" width="150"></td>
-                                    <td><?= $u->users_name ?></td>
+                                    <td><img src="<?= base_url() ?>/img/galeri/<?= $u->galeri_kegiatan_foto_file ?>" alt="" width="150"></td>
                                     <td class="text-center">
-                                        <a href="<?= base_url('nimda/galeri/editDetail/' . $u->galeri_id . '/' . $kategori->kategori_id) ?>" class="mr-2" alt="edit"><i class="fas fa-edit text-info font-16"></i></a>
-                                        <a href="<?= base_url('nimda/galeri/deleteDetail/' . $u->galeri_id . '/' . $kategori->kategori_id) ?>" onclick="return confirm('are you sure?')" alt="delete"><i class="fas fa-trash-alt text-danger font-16"></i></a>
+                                        <a href="<?= base_url('nimda/galeri_kegiatan/editDetail/' . $galeri->galeri_kegiatan_id . '/' . $u->galeri_kegiatan_foto_id) ?>" class="mr-2" alt="edit"><i class="fas fa-edit text-info font-16"></i></a>
+                                        <a href="<?= base_url('nimda/galeri_kegiatan/deleteDetail/' . $galeri->galeri_kegiatan_id . '/' . $u->galeri_kegiatan_foto_id) ?>" onclick="return confirm('are you sure?')" alt="delete"><i class="fas fa-trash-alt text-danger font-16"></i></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

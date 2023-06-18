@@ -44,19 +44,10 @@
         </li>
 
         <li>
-            <a href="javascript: void(0);"><i class="fas fa-info"></i><span>Info</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+            <a href="javascript: void(0);"><i class="far fa-images "></i><span>Galeri Kegiatan</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
             <ul class="nav-second-level" aria-expanded="false">
-                <li class="nav-item"><a class="nav-link" href="<?= base_url('nimda/info') ?>"><i class="ti-control-record"></i>List Info</a></li>
-                <li class="nav-item"><a class="nav-link" href="<?= base_url('nimda/info/add') ?>"><i class="ti-control-record"></i>Tambah Info</a></li>
-                <li class="nav-item"><a class="nav-link" href="<?= base_url('nimda/kategori/index/info') ?>"><i class="ti-control-record"></i>Kategori Info</a></li>
-            </ul>
-        </li>
-
-        <li>
-            <a href="javascript: void(0);"><i class="far fa-images "></i><span>Galeri</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
-            <ul class="nav-second-level" aria-expanded="false">
-                <li class="nav-item"><a class="nav-link" href="<?= base_url('nimda/galeri') ?>"><i class="ti-control-record"></i>List Galeri</a></li>
-                <li class="nav-item"><a class="nav-link" href="<?= base_url('nimda/galeri/add') ?>"><i class="ti-control-record"></i>Tambah Galeri</a></li>
+                <li class="nav-item"><a class="nav-link" href="<?= base_url('nimda/galeri_kegiatan') ?>"><i class="ti-control-record"></i>List Galeri Kegiatan</a></li>
+                <li class="nav-item"><a class="nav-link" href="<?= base_url('nimda/galeri_kegiatan/add') ?>"><i class="ti-control-record"></i>Tambah Galeri Kegiatan</a></li>
             </ul>
         </li>
 

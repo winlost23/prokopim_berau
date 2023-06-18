@@ -26,7 +26,7 @@
                 <div class="float-right">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="<?= base_url() ?>/nimda">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Galeri</li>
+                        <li class="breadcrumb-item active">Galeri Kegiatan</li>
                     </ol>
                 </div>
                 <h4 class="page-title">Galeri</h4>
@@ -41,8 +41,8 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="mt-0 header-title">List Galeri</h4>
-                    <p class="text-muted mb-3">Berikut adalah semua data galeri yang ada pada system ini...</p>
+                    <h4 class="mt-0 header-title">List Galeri Kegiatan</h4>
+                    <p class="text-muted mb-3">Berikut adalah semua data galeri kegiatan yang ada pada system ini...</p>
                     <?php if (session()->getFlashdata('tipe')) : ?>
                         <div class="alert alert-outline-<?= session()->getFlashdata('tipe') ?> b-round" role="alert">
                             <?= session()->getFlashdata('pesan') ?>
@@ -52,9 +52,8 @@
                         <thead>
                             <tr>
                                 <th width="5%">No</th>
-                                <th>Album</th>
-                                <th>Gambar</th>
-                                <th>User</th>
+                                <th>Judul</th>
+                                <th>Fotografer</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -63,17 +62,16 @@
                         <tbody>
                             <?php
                             $nomor = 1;
-                            foreach ($kategori as $u) :
+                            foreach ($galeri as $u) :
                             ?>
                                 <tr>
                                     <td><?= $nomor++ ?></td>
-                                    <td><?= $u->kategori_judul ?></td>
-                                    <td><img src="<?= base_url() ?>/img/galeri/<?= $u->kategori_gambar ?>" alt="" width="150"></td>
-                                    <td><?= $u->users_name ?></td>
+                                    <td><?= $u->galeri_kegiatan_judul ?></td>
+                                    <td><?= $u->galeri_kegiatan_fotografer ?></td>
                                     <td class="text-center">
-                                        <a href="<?= base_url('nimda/galeri/detail/' . $u->kategori_id) ?>" class="mr-2" alt="detail"><i class="far fa-file-image font-16"></i></a>
-                                        <a href="<?= base_url('nimda/galeri/edit/' . $u->kategori_id) ?>" class="mr-2" alt="edit"><i class="fas fa-edit text-info font-16"></i></a>
-                                        <a href="<?= base_url('nimda/galeri/delete/' . $u->kategori_id) ?>" onclick="return confirm('are you sure?')" alt="delete"><i class="fas fa-trash-alt text-danger font-16"></i></a>
+                                        <a href="<?= base_url('nimda/galeri_kegiatan/detail/' . $u->galeri_kegiatan_id) ?>" class="mr-2" alt="detail"><i class="far fa-file-image font-16"></i></a>
+                                        <a href="<?= base_url('nimda/galeri_kegiatan/edit/' . $u->galeri_kegiatan_id) ?>" class="mr-2" alt="edit"><i class="fas fa-edit text-info font-16"></i></a>
+                                        <a href="<?= base_url('nimda/galeri_kegiatan/delete/' . $u->galeri_kegiatan_id) ?>" onclick="return confirm('are you sure?')" alt="delete"><i class="fas fa-trash-alt text-danger font-16"></i></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
