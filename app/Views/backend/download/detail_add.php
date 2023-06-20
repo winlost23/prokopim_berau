@@ -38,7 +38,7 @@
                     <p class="text-muted mb-3">Silahkan lengkapi form dibawah ini...</p>
                     <?= $validation->getErrors() ? $validation->listErrors('my_list') : '' ?>
                     <div class="general-label">
-                        <form method="post" action="<?= base_url('nimda/download/detail_save/' . $data->download_id) ?>">
+                        <form method="post" action="<?= base_url('nimda/download/detail_save/' . $data->download_id) ?>" enctype="multipart/form-data">
                             <?= csrf_field(); ?>
                             <div class="form-group row">
                                 <label for="nama" class="col-sm-3 col-form-label">Judul</label>

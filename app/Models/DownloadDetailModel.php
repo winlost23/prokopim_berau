@@ -17,6 +17,7 @@ class DownloadDetailModel extends Model
         'download_detail_judul',
         'download_detail_slug',
         'download_detail_ukuran',
+        'download_detail_ext',
         'download_detail_file',
     ];
 

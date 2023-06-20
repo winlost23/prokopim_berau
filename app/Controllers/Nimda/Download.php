@@ -88,6 +88,17 @@ class Download extends BaseController
         return view($this->halaman . 'detail_add', $data);
     }
 
+    public function get_download($idDownload, $idDetailDownload)
+    {
+        $download = $this->downloaddetailModel->find($idDetailDownload);
+        //dd($download);
+        $nama = $download->download_detail_judul;
+        $ext = $download->download_detail_ext;
+        $file = $download->download_detail_file;
+
+        return $this->response->download('file/download/' . $file, null)->setFileName($nama . '.' . $ext);
+    }
+
     public function detail_save($id)
     {
         //dd($id);
@@ -98,17 +109,45 @@ class Download extends BaseController
                 'errors' => [
                     'required' => 'Judul harus diisi'
                 ]
-            ]
+            ],
+            'download_detail_file' => [
+                'rules' => [
+                    'uploaded[download_detail_file]',
+                    'mime_in[download_detail_file,application/pdf,application/msword,application/zip,application/rar,]',
+                    'max_size[download_detail_file,6124]',
+                ],
+                'errors' => [
+                    'max_size' => 'Ukuran gambar tidak boleh lebih dari 5M',
+                    'mime_in' => 'File yang di upload harus berupa (pdf / docx / zip / rar)'
+                ]
+            ],
         ])) {
             return redirect()->to(site_url('/nimda/download/detail_add/' . $id))->withInput();
         }
 
+        $fileSampul = $this->request->getFile('download_detail_file');
+        //apakah tidak ada gambar yang diupload
+        if ($fileSampul->getError() == 4) {
+            $namaSampul = NULL;
+            $size_kb = NULL;
+            $ext = NULL;
+        } else {
+            //generate nama sampul random
+            $namaSampul = $fileSampul->getRandomName();
+            //pindahkan file ke folder img
+            $fileSampul->move('file/download', $namaSampul);
+            $size_kb = $fileSampul->getSize('kb');
+            $ext = $fileSampul->getClientExtension();
+        }
 
         $slug = url_title($this->request->getPost('download_detail_judul'), '-', true);
         $r = $this->downloaddetailModel->save([
             'download_id' => $id,
             'download_detail_judul' => $this->request->getPost('download_detail_judul'),
-            'download_detail_judul' => $slug,
+            'download_detail_slug' => $slug,
+            'download_detail_ukuran' => $size_kb,
+            'download_detail_ext' => $ext,
+            'download_detail_file' => $namaSampul,
         ]);
         if ($r) {
             $this->notif('Data Download Berhasil disimpan.');
@@ -142,16 +181,48 @@ class Download extends BaseController
                 'errors' => [
                     'required' => 'Judul harus diisi',
                 ]
-            ]
+            ],
+            'download_detail_file' => [
+                'rules' => [
+                    'uploaded[download_detail_file]',
+                    'mime_in[download_detail_file,application/pdf,application/msword,application/zip,application/rar,]',
+                    'max_size[download_detail_file,6124]',
+                ],
+                'errors' => [
+                    'max_size' => 'Ukuran gambar tidak boleh lebih dari 5M',
+                    'mime_in' => 'File yang di upload harus berupa (pdf / docx / zip / rar)'
+                ]
+            ],
         ])) {
             // $validation = \Config\Services::validation();
             return redirect()->to(site_url('/nimda/download/detail_edit/' . $idDownload . '/' . $idDetailDownload))->withInput();
         }
+
+        $fileSampul = $this->request->getFile('download_detail_file');
+        //apakah tidak ada gambar yang diupload
+        if ($fileSampul->getError() == 4) {
+            $namaSampul = $this->request->getPost('file_lama');
+            $size_kb = $this->request->getPost('ukuran_lama');
+            $ext = $this->request->getPost('ext_lama');
+        } else {
+            //generate nama sampul random
+            $namaSampul = $fileSampul->getRandomName();
+            //pindahkan file ke folder img
+            $fileSampul->move('file/download', $namaSampul);
+            $size_kb = $fileSampul->getSize('kb');
+            $ext = $fileSampul->getClientExtension();
+
+            unlink('file/download/' . $this->request->getPost('file_lama'));
+        }
+
         $slug = url_title($this->request->getPost('download_detail_slug'), '-', true);
         $r = $this->downloaddetailModel->save([
             'download_detail_id' => $idDetailDownload,
             'download_detail_judul' => $this->request->getPost('download_detail_judul'),
             'download_detail_slug' => $slug,
+            'download_detail_ukuran' => $size_kb,
+            'download_detail_ext' => $ext,
+            'download_detail_file' => $namaSampul,
         ]);
 
         if ($r) {

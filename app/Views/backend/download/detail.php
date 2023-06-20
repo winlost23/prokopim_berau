@@ -58,6 +58,7 @@
                                 <th width="5%">No</th>
                                 <th>Nama</th>
                                 <th>Tanggal</th>
+                                <th>Download</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -73,6 +74,7 @@
                                     <td><?= $nomor++ ?></td>
                                     <td><?= $u->download_detail_judul ?></td>
                                     <td><?= $u->created_at ?></td>
+                                    <td><a href="<?= base_url('nimda/download/get_download/' . $data->download_id . '/' . $u->download_detail_id) ?>" class="mr-2"><i class="fas fa-download text-warning font-16"></i></a></td>
                                     <td class="text-center">
                                         <a href="<?= base_url('nimda/download/detail_edit/' . $data->download_id . '/' . $u->download_detail_id) ?>" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
                                         <a href="<?= base_url('nimda/download/detail_delete/' . $data->download_id . '/' . $u->download_detail_id) ?>" onclick="return confirm('are you sure?')"><i class="fas fa-trash-alt text-danger font-16"></i></a>
