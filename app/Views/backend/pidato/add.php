@@ -84,16 +84,13 @@
 
                                 </div>
                             </div>
-
-                            <div class=" form-group row">
-                                <label for="nama" class="col-sm-3 col-form-label">Gambar</label>
+                            <div class="form-group row">
+                                <label for="nama" class="col-sm-3 col-form-label">File Pidato</label>
                                 <div class="col-sm-9">
-                                    <input type="file" class="form-control <?= ($validation->hasError('pidato_detail_gambar')) ? 'is-invalid' : '' ?>" id="pidato_detail_gambar" name="pidato_detail_gambar" onchange="previewImg()">
+                                    <input type="file" class="form-control <?= ($validation->hasError('pidato_detail_file')) ? 'is-invalid' : '' ?>" id="pidato_detail_file" placeholder="Masukkan Judul" name="pidato_detail_file" value="<?= old('pidato_detail_file') ?>">
                                     <div class="invalid-feedback">
-                                        <?= $validation->getError('pidato_detail_gambar'); ?>
+                                        <?= $validation->getError('pidato_detail_file'); ?>
                                     </div>
-                                    <label class="custom-file-label" for="pidato_detail_gambar">Pilih Gambar</label>
-                                    <img src="<?= base_url() ?>/img/default.jpg" class="img-thumbnail img-preview" style="width: 150px;">
                                 </div>
                             </div>
                             <div class="form-group row">

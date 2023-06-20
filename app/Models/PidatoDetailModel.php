@@ -19,6 +19,7 @@ class PidatoDetailModel extends Model
         'pidato_detail_tgl_acara',
         'pidato_detail_tempat',
         'pidato_detail_file',
+        'pidato_detail_ext',
     ];
 
     protected $useTimestamps = true;
