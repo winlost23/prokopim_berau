@@ -3,11 +3,11 @@
 namespace App\Controllers\Nimda;
 
 use App\Controllers\BaseController;
-use App\Models\BeritaModel;
-use App\Models\GaleriModel;
-use App\Models\InfoModel;
+use App\Models\AgendaModel;
+use App\Models\BeritaDetailModel;
 use App\Models\PengaturanModel;
 use App\Models\PengunjungModel;
+use App\Models\PidatoDetailModel;
 use App\Models\SliderModel;
 use App\Models\User;
 use App\Models\UseronlineModel;
@@ -21,9 +21,9 @@ class Home extends BaseController
     {
         $this->userModel = new User();
         $this->pengaturanModel = new PengaturanModel();
-        $this->beritaModel = new BeritaModel();
-        $this->galeriModel = new GaleriModel();
-        $this->infoModel = new InfoModel();
+        $this->beritadetailModel = new BeritaDetailModel();
+        $this->pidatodetailModel = new PidatoDetailModel();
+        $this->agendaModel = new AgendaModel();
         $this->sliderModel = new SliderModel();
         $this->UseronlineModel = new UseronlineModel();
         $this->PengunjungModel = new PengunjungModel();
@@ -35,20 +35,17 @@ class Home extends BaseController
 
         $data['users'] = $this->userModel->find(session()->userid);
         $data['pengaturan'] = $this->pengaturanModel->first();
-        $data['jmlberita'] = $this->beritaModel->selectCount('berita_id')->first();
-        $data['jmlgaleri'] = $this->galeriModel->selectCount('galeri_id')->first();
-        $data['jmlinfo'] = $this->infoModel->selectCount('info_id')->first();
+        $data['jmlberita'] = $this->beritadetailModel->selectCount('berita_detail_id')->first();
+        $data['jmlpidato'] = $this->pidatodetailModel->selectCount('pidato_detail_id')->first();
+        $data['jmlagenda'] = $this->agendaModel->selectCount('agenda_id')->first();
         $data['jmlslider'] = $this->sliderModel->selectCount('slider_id')->first();
-        $data['berita'] = $this->beritaModel
-            ->join('users', 'berita.users_id = users.users_id')
-            ->join('kategori', 'berita.kategori_id = kategori.kategori_id')
-            ->orderby('berita.berita_id', 'desc')
+        $data['berita'] = $this->beritadetailModel
+            ->join('berita', 'berita_detail.berita_id = berita.berita_id')
+            ->orderby('berita_detail.berita_detail_id', 'desc')
             ->limit(5)
             ->findAll();
-        $data['info'] = $this->infoModel
-            ->join('users', 'info.users_id = users.users_id')
-            ->join('kategori', 'info.kategori_id = kategori.kategori_id')
-            ->orderby('info.info_id', 'desc')
+        $data['agenda'] = $this->agendaModel
+            ->orderby('agenda_id', 'desc')
             ->limit(5)
             ->findAll();
 

@@ -337,7 +337,7 @@ $bulans = array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
                                 <div class="icon-info mb-3">
                                     <i class="far fa-newspaper bg-soft-warning"></i>
                                 </div>
-                                <h3 class="text-dark"><?= $jmlberita->berita_id ?></h3>
+                                <h3 class="text-dark"><?= $jmlberita->berita_detail_id ?></h3>
                                 <h6 class="font-14 text-dark">Berita</h6>
                             </div>
                             <!--end card-body-->
@@ -346,14 +346,14 @@ $bulans = array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
                     <!--end card-->
                 </div><!-- end col-->
                 <div class="col-lg-3">
-                    <a href="<?= base_url('nimda/galeri') ?>">
+                    <a href="<?= base_url('nimda/pidato') ?>">
                         <div class="card dash-data-card text-center">
                             <div class="card-body">
                                 <div class="icon-info mb-3">
                                     <i class="far fa-images bg-soft-pink"></i>
                                 </div>
-                                <h3 class="text-dark"><?= $jmlgaleri->galeri_id ?></h3>
-                                <h6 class="font-14 text-dark">Galeri</h6>
+                                <h3 class="text-dark"><?= $jmlpidato->pidato_detail_id ?></h3>
+                                <h6 class="font-14 text-dark">Pidato</h6>
                             </div>
                             <!--end card-body-->
                         </div>
@@ -361,14 +361,14 @@ $bulans = array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
                     <!--end card-->
                 </div><!-- end col-->
                 <div class="col-lg-3">
-                    <a href="<?= base_url('nimda/info') ?>">
+                    <a href="<?= base_url('nimda/agenda') ?>">
                         <div class="card dash-data-card text-center">
                             <div class="card-body">
                                 <div class="icon-info mb-3">
                                     <i class="fas fa-info bg-soft-success"></i>
                                 </div>
-                                <h3 class="text-dark"><?= $jmlinfo->info_id ?></h3>
-                                <h6 class="font-14 text-dark">Info</h6>
+                                <h3 class="text-dark"><?= $jmlagenda->agenda_id ?></h3>
+                                <h6 class="font-14 text-dark">Agenda</h6>
                             </div>
                             <!--end card-body-->
                         </div>
@@ -459,16 +459,16 @@ $bulans = array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
         <div class="col-lg-6">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title mt-0 mb-3">Info Terbaru</h4>
+                    <h4 class="header-title mt-0 mb-3">Agenda Terbaru</h4>
                     <div class="table-responsive browser_users">
                         <table class="table mb-0">
                             <thead class="thead-light">
                                 <tr>
                                     <th class="border-top-0" width="5%">No</th>
                                     <th class="border-top-0">Judul</th>
-                                    <th class="border-top-0">Isi</th>
-                                    <th class="border-top-0">Kategori</th>
-                                    <th class="border-top-0">Download</th>
+                                    <th class="border-top-0">Tanggal</th>
+                                    <th class="border-top-0">Jam</th>
+                                    <th class="border-top-0">Lokasi</th>
                                 </tr>
                                 <!--end tr-->
                             </thead>
@@ -476,20 +476,15 @@ $bulans = array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
                                 <?php
 
                                 $nomor = 1;
-                                foreach ($info as $u) :
+                                foreach ($agenda as $u) :
                                 ?>
                                     <tr>
-
                                         <td><?= $nomor++ ?></td>
-                                        <td><?= $u->info_judul ?></td>
-                                        <?php
-                                        $isi_berita = htmlentities(strip_tags($u->info_isi));
-                                        $isi = substr($isi_berita, 0, 20);
-                                        $isi = substr($isi_berita, 0, strrpos($isi, " "));
-                                        ?>
-                                        <td><?= $isi ?></td>
-                                        <td><?= $u->kategori_judul ?></td>
-                                        <td><?= $u->info_download ?></td>
+                                        <td><?= $u->agenda_judul ?></td>
+                                        <td><?= $u->agenda_tanggal ?></td>
+                                        <td><?= $u->agenda_jam ?></td>
+                                        <td><?= $u->agenda_lokasi ?></td>
+
                                     </tr>
                                 <?php endforeach; ?>
                                 <!--end tr-->
@@ -529,12 +524,12 @@ $bulans = array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
                                 foreach ($berita as $u) :
                                 ?>
                                     <tr>
-
                                         <td><?= $nomor++ ?></td>
+                                        <td><?= $u->berita_detail_judul ?></td>
                                         <td><?= $u->berita_judul ?></td>
-                                        <td><?= $u->kategori_judul ?></td>
-                                        <td><?= $u->berita_view ?></td>
+                                        <td><?= $u->berita_detail_dibaca ?></td>
                                         <td><?= $u->updated_at ?></td>
+
                                     </tr>
                                 <?php endforeach; ?>
                                 <!--end tr-->

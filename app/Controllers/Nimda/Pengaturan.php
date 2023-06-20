@@ -48,14 +48,6 @@ class Pengaturan extends BaseController
                     'mime_in' => 'Yang anda pilih bukan gambar'
                 ]
             ],
-            'pengaturan_logo_footer' => [
-                'rules' => 'max_size[pengaturan_logo_footer,1024]|is_image[pengaturan_logo_footer]|mime_in[pengaturan_logo_footer,image/jpg,image/jpeg,image/png]',
-                'errors' => [
-                    'max_size' => 'Ukuran gambar tidak boleh lebih dari 1M',
-                    'is_image' => 'Yang anda pilih bukan gambar',
-                    'mime_in' => 'Yang anda pilih bukan gambar'
-                ]
-            ],
             'pengaturan_favicon' => [
                 'rules' => 'max_size[pengaturan_favicon,1024]|is_image[pengaturan_favicon]|mime_in[pengaturan_favicon,image/jpg,image/jpeg,image/png]',
                 'errors' => [
@@ -101,12 +93,6 @@ class Pengaturan extends BaseController
                     'required' => '{field} Judul harus diisi',
                 ]
             ],
-            'pengaturan_youtube' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => '{field} Judul harus diisi',
-                ]
-            ],
             'pengaturan_footer' => [
                 'rules' => 'required',
                 'errors' => [
@@ -132,21 +118,6 @@ class Pengaturan extends BaseController
             //unlink('img/' . $this->request->getPost('pengaturan_logo_header_lama'));
         }
         //end Logo Header
-
-        //Logo Footer
-        $fileSampulFooter = $this->request->getFile('pengaturan_logo_footer');
-        //cek gambar, apakah tetap gambar lama
-        if ($fileSampulFooter->getError() == 4) {
-            $namaSampulFooter = $this->request->getPost('pengaturan_logo_footer_lama');
-        } else {
-            $namaSampulFooter = $fileSampulFooter->getRandomName();
-            //dd($namaSampul);
-            //pindahkan gambar
-            $fileSampulFooter->move('img/', $namaSampulFooter);
-            //hapus file gambar lama
-            //unlink('img/' . $this->request->getPost('pengaturan_logo_footer_lama'));
-        }
-        //end Logo Footer
 
         //Favicon
         $fileSampulFavicon = $this->request->getFile('pengaturan_favicon');
@@ -174,10 +145,8 @@ class Pengaturan extends BaseController
             'pengaturan_facebook' => $this->request->getPost('pengaturan_facebook'),
             'pengaturan_twitter' => $this->request->getPost('pengaturan_twitter'),
             'pengaturan_instagram' => $this->request->getPost('pengaturan_instagram'),
-            'pengaturan_youtube' => $this->request->getPost('pengaturan_youtube'),
             'pengaturan_footer' => $this->request->getPost('pengaturan_footer'),
             'pengaturan_logo_header' => $namaSampulHeader,
-            'pengaturan_logo_footer' => $namaSampulFooter,
             'pengaturan_favicon' => $namaSampulFavicon,
         ]);
 

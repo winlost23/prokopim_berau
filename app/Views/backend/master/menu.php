@@ -96,7 +96,7 @@
         </li>
 
         <li>
-            <a href="<?= base_url('nimda/kontak') ?>"><i class="fas fa-phone"></i><span>Kontak Kami</span><span class="menu-arrow"></span></a>
+            <a href="<?= base_url('nimda/') ?>"><i class="fas fa-phone"></i><span>Kontak Kami</span><span class="menu-arrow"></span></a>
         </li>
 
         <li>

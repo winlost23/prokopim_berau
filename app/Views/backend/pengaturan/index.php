@@ -197,16 +197,6 @@
                             </div>
                         </div>
 
-
-                        <div class="form-group row">
-                            <label for="nama" class="col-sm-3 col-form-label">Footer</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control <?= ($validation->hasError('pengaturan_footer')) ? 'is-invalid' : '' ?>" id="pengaturan_footer" name="pengaturan_footer" autofocus value="<?= (old('pengaturan_footer')) ? old('pengaturan_footer') : $pengaturan->pengaturan_footer ?>">
-                                <div class="invalid-feedback">
-                                    <?= $validation->getError('pengaturan_footer'); ?>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
