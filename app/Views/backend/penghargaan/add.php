@@ -109,7 +109,7 @@
                             <div class="row">
                                 <div class="col-sm-9 ml-auto">
                                     <button type="submit" class="btn btn-gradient-primary">Submit</button>
-                                    <a href="<?= base_url() ?>/nimda/pidato" class="btn btn-gradient-danger">Cancel</a>
+                                    <a href="<?= base_url() ?>/nimda/penghargaan" class="btn btn-gradient-danger">Cancel</a>
                                 </div>
                             </div>
                         </form>

@@ -48,6 +48,9 @@
                             <?= session()->getFlashdata('pesan') ?>
                         </div>
                     <?php endif; ?>
+                    <a href="<?= base_url('nimda/penghargaan/add') ?>" class="btn btn-gradient-secondary btn-clipboard" data-clipboard-action="copy" data-clipboard-target="#clipboardTextarea"><i class="fas fa-plus mr-2"></i>Tambah Penghargaan</a>
+                    <br>
+                    <br>
                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                             <tr>
