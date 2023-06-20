@@ -37,24 +37,6 @@
                         <form method="post" action="<?= base_url('nimda/users/update/' . $user->users_id) ?>" enctype="multipart/form-data">
                             <input type="hidden" name="users_id" value="<?= $user->users_id ?>">
                             <div class="form-group row">
-                                <label for="nama" class="col-sm-3 col-form-label">Nama Lengkap</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="nama" placeholder="Masukkan nama lengkap..." name="nama" value="<?= $user->users_nama ?>">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="email" class="col-sm-3 col-form-label">Email</label>
-                                <div class="col-sm-9">
-                                    <input type="email" class="form-control" id="email" placeholder="Masukkan Email" name="email" value="<?= $user->users_email ?>">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="nohp" class="col-sm-3 col-form-label">No HP</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="nohp" placeholder="Masukkan nohp..." name="nohp" value="<?= $user->users_nohp ?>">
-                                </div>
-                            </div>
-                            <div class="form-group row">
                                 <label for="nama" class="col-sm-3 col-form-label">Foto</label>
                                 <div class="col-sm-9">
                                     <input type="file" name="foto">
@@ -79,16 +61,6 @@
                                 <label for="horizontalInput2" class="col-sm-3 col-form-label">Ulangi Password</label>
                                 <div class="col-sm-9">
                                     <input type="password" class="form-control" id="horizontalInput2" placeholder="Ulangi Password" name="password_ulangi">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="horizontalInput2" class="col-sm-3 col-form-label">Level</label>
-                                <div class="col-sm-9">
-                                    <select class="form-control" id="exampleFormControlSelect1" name="level">
-                                        <?php foreach ($level as $k => $v) : ?>
-                                            <option value="<?= $k ?>" <?= $k == $user->users_level ? 'selected' : '' ?>><?= $v ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
                                 </div>
                             </div>
                             <div class="row">

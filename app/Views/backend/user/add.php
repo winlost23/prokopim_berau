@@ -35,24 +35,7 @@
                     <?= $validation->getErrors() ? $validation->listErrors('my_list') : '' ?>
                     <div class="general-label">
                         <form method="post" action="<?= base_url('nimda/users/save') ?>" enctype="multipart/form-data">
-                            <div class="form-group row">
-                                <label for="nama" class="col-sm-3 col-form-label">Nama Lengkap</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="nama" placeholder="Masukkan nama lengkap..." name="nama" value="<?= old('nama') ?>">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="email" class="col-sm-3 col-form-label">Email</label>
-                                <div class="col-sm-9">
-                                    <input type="email" class="form-control" id="email" placeholder="Masukkan Email" name="email" value="<?= old('email') ?>">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="nohp" class="col-sm-3 col-form-label">No HP</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="nohp" placeholder="Masukkan nohp..." name="nohp" value="<?= old('nohp') ?>">
-                                </div>
-                            </div>
+
                             <div class="form-group row">
                                 <label for="nama" class="col-sm-3 col-form-label">Foto</label>
                                 <div class="col-sm-9">
@@ -80,16 +63,7 @@
                                     <input type="password" class="form-control" id="horizontalInput2" placeholder="Ulangi Password" name="password_ulangi">
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label for="horizontalInput2" class="col-sm-3 col-form-label">Level</label>
-                                <div class="col-sm-9">
-                                    <select class="form-control" id="exampleFormControlSelect1" name="level">
-                                        <?php foreach ($level as $k => $v) : ?>
-                                            <option value="<?= $k ?>"><?= $v ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                            </div>
+
                             <div class="row">
                                 <div class="col-sm-9 ml-auto">
                                     <button type="submit" class="btn btn-gradient-primary">Submit</button>

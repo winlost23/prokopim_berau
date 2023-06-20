@@ -48,15 +48,15 @@
                             <?= session()->getFlashdata('pesan') ?>
                         </div>
                     <?php endif; ?>
+                    <a href="<?= base_url('nimda/users/add') ?>" class="btn btn-gradient-secondary btn-clipboard" data-clipboard-action="copy" data-clipboard-target="#clipboardTextarea"><i class="fas fa-plus mr-2"></i>Tambah User</a>
+                    <br>
+                    <br>
                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                             <tr>
                                 <th width="5%">No</th>
-                                <th>Nama</th>
+                                <th>Foto</th>
                                 <th>Username</th>
-                                <th>Level</th>
-                                <th>Email</th>
-                                <th>NoHP</th>
                                 <th>Last Login</th>
                                 <th>Last IP</th>
                                 <th>Action</th>
@@ -71,11 +71,8 @@
                             ?>
                                 <tr>
                                     <td><?= $nomor++ ?></td>
-                                    <td><img src="<?= base_url('avatar/' . $u->users_foto) ?>" alt="" class="rounded-circle thumb-sm mr-1"><?= $u->users_nama ?></td>
+                                    <td><img src="<?= base_url('avatar/' . $u->users_foto) ?>" alt="" class="rounded-circle thumb-sm mr-1"></td>
                                     <td><?= $u->users_name ?></td>
-                                    <td><?= $level[$u->users_level] ?></td>
-                                    <td><?= $u->users_email ?></td>
-                                    <td><?= $u->users_nohp ?></td>
                                     <td><?= strftime("%d %b %Y %H:%M", strtotime($u->users_lastlogin)) ?></td>
                                     <td><?= $u->users_lastip ?></td>
                                     <td class="text-center">

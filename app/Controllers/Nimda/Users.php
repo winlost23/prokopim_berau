@@ -66,10 +66,6 @@ class Users extends BaseController
 		$data = [
 			'users_name' => $this->request->getPost('name'),
 			'users_password' => $this->request->getPost('password'),
-			'users_email' => $this->request->getPost('email'),
-			'users_level' => $this->request->getPost('level'),
-			'users_nohp' => $this->request->getPost('nohp'),
-			'users_nama' => $this->request->getPost('nama')
 		];
 
 		$data['users_foto'] = $foto;
@@ -117,10 +113,6 @@ class Users extends BaseController
 		$data = array_merge($data, [
 			'users_id' => $id,
 			'users_name' => $this->request->getPost('name'),
-			'users_email' => $this->request->getPost('email'),
-			'users_level' => $this->request->getPost('level'),
-			'users_nohp' => $this->request->getPost('nohp'),
-			'users_nama' => $this->request->getPost('nama')
 		]);
 
 		if ($avatar->isValid()) {

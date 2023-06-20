@@ -58,6 +58,7 @@
                                 <th>Judul</th>
                                 <th>Kategori</th>
                                 <th>Pantun</th>
+                                <th>File Pidato</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -79,6 +80,7 @@
                                     <td><?= $u->pidato_detail_judul ?></td>
                                     <td><?= $u->kategori_judul ?></td>
                                     <td>(<?= $count ?>)<a href="<?= base_url('nimda/pidato/pantun/' . $u->pidato_detail_id) ?>" class="mr-2"> <i class="fas fa-plus text-success font-16"></i></td>
+                                    <td><a href="<?= base_url('nimda/pidato/get_download/' . $u->pidato_detail_id) ?>" class="mr-2"><i class="fas fa-download text-warning font-16"></i></a></td>
                                     <td class="text-center">
                                         <a href="<?= base_url('nimda/pidato/edit/' . $u->pidato_detail_id) ?>" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
                                         <a href="<?= base_url('nimda/pidato/delete/' . $u->pidato_detail_id) ?>" onclick="return confirm('are you sure?')"><i class="fas fa-trash-alt text-danger font-16"></i></a>

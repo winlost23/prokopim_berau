@@ -40,6 +40,8 @@
                             <?= csrf_field(); ?>
                             <input type="hidden" name="pidato_detail_slug" value="<?= $pidato->pidato_detail_slug ?>">
                             <input type="hidden" name="pidato_detail_id" value="<?= $pidato->pidato_detail_id ?>">
+                            <input type="hidden" name="file_lama" value="<?= $pidato->pidato_detail_file ?>">
+                            <input type="hidden" name="ext_lama" value="<?= $pidato->pidato_detail_ext ?>">
                             <div class="form-group row">
                                 <label for="nama" class="col-sm-3 col-form-label">Judul</label>
                                 <div class="col-sm-9">
@@ -81,7 +83,22 @@
 
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label for="nama" class="col-sm-3 col-form-label">File</label>
+                                <div class="col-sm-9">
+                                    <a href="<?= base_url('nimda/pidato/get_download/' . $pidato->pidato_detail_id) ?>" class="mr-2"><?= $pidato->pidato_detail_judul . '.' .  $pidato->pidato_detail_ext ?> <i class="fas fa-download text-warning font-16"></i></a>
 
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="nama" class="col-sm-3 col-form-label">Upload Ulang</label>
+                                <div class="col-sm-9">
+                                    <input type="file" class="form-control <?= ($validation->hasError('pidato_detail_file')) ? 'is-invalid' : '' ?>" id="pidato_detail_file" placeholder="Masukkan Judul" name="pidato_detail_file" value="<?= old('pidato_detail_file') ?>">
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('pidato_detail_file'); ?>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <label for="nama" class="col-sm-3 col-form-label">Tanggal Acara</label>
                                 <div class="col-sm-9">

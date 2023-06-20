@@ -168,6 +168,17 @@ class Pidato extends BaseController
         return view($this->halaman . 'add', $data);
     }
 
+    public function get_download($id)
+    {
+        $download = $this->pidatodetailModel->find($id);
+        //dd($download);
+        $nama = $download->pidato_detail_judul;
+        $ext = $download->pidato_detail_ext;
+        $file = $download->pidato_detail_file;
+
+        return $this->response->download('file/pidato/' . $file, null)->setFileName($nama . '.' . $ext);
+    }
+
     public function save()
     {
         // validation input
@@ -179,11 +190,33 @@ class Pidato extends BaseController
                     'is_unique' => '{field} Judul pidato sudah terdaftar'
                 ]
             ],
-
+            'pidato_detail_file' => [
+                'rules' => [
+                    'uploaded[pidato_detail_file]',
+                    'mime_in[pidato_detail_file,application/pdf,application/msword,application/zip,application/rar,]',
+                    'max_size[pidato_detail_file,6124]',
+                ],
+                'errors' => [
+                    'max_size' => 'Ukuran gambar tidak boleh lebih dari 5M',
+                    'mime_in' => 'File yang di upload harus berupa (pdf / docx / zip / rar)'
+                ]
+            ],
         ])) {
             return redirect()->to(site_url('/nimda/pidato/add'))->withInput();
         }
 
+        $fileSampul = $this->request->getFile('pidato_detail_file');
+        //apakah tidak ada gambar yang diupload
+        if ($fileSampul->getError() == 4) {
+            $namaSampul = NULL;
+            $ext = NULL;
+        } else {
+            //generate nama sampul random
+            $namaSampul = $fileSampul->getRandomName();
+            //pindahkan file ke folder img
+            $fileSampul->move('file/pidato', $namaSampul);
+            $ext = $fileSampul->getClientExtension();
+        }
 
         $slug = url_title($this->request->getVar('pidato_detail_judul'), '-', true);
         $r = $this->pidatodetailModel->save([
@@ -192,6 +225,8 @@ class Pidato extends BaseController
             'pidato_detail_slug' => $slug,
             'pidato_detail_tgl_acara' => $this->request->getVar('pidato_detail_tgl_acara'),
             'pidato_detail_tempat' => $this->request->getVar('pidato_detail_tempat'),
+            'pidato_detail_file' => $namaSampul,
+            'pidato_detail_ext' => $ext,
         ]);
         if ($r) {
             $this->notif('Pidato Baru Berhasil disimpan.');
@@ -233,12 +268,37 @@ class Pidato extends BaseController
                     'required' => '{field} Judul harus diisi',
                     'is_unique' => '{field} Judul sudah terdaftar'
                 ]
-            ]
+            ],
+            'pidato_detail_file' => [
+                'rules' => [
+                    'uploaded[pidato_detail_file]',
+                    'mime_in[pidato_detail_file,application/pdf,application/msword,application/zip,application/rar,]',
+                    'max_size[pidato_detail_file,6124]',
+                ],
+                'errors' => [
+                    'max_size' => 'Ukuran gambar tidak boleh lebih dari 5M',
+                    'mime_in' => 'File yang di upload harus berupa (pdf / docx / zip / rar)'
+                ]
+            ],
         ])) {
             // $validation = \Config\Services::validation();
             return redirect()->to(site_url('/nimda/pidato/edit/') . $this->request->getPost('pidato_detail_id'))->withInput();
         }
 
+        $fileSampul = $this->request->getFile('pidato_detail_file');
+        //apakah tidak ada gambar yang diupload
+        if ($fileSampul->getError() == 4) {
+            $namaSampul = $this->request->getPost('file_lama');
+            $ext = $this->request->getPost('ext_lama');
+        } else {
+            //generate nama sampul random
+            $namaSampul = $fileSampul->getRandomName();
+            //pindahkan file ke folder img
+            $fileSampul->move('file/pidato', $namaSampul);
+            $ext = $fileSampul->getClientExtension();
+
+            unlink('file/pidato/' . $this->request->getPost('file_lama'));
+        }
 
         $slug = url_title($this->request->getPost('pidato_detail_judul'), '-', true);
         $r = $this->pidatodetailModel->save([
@@ -248,6 +308,8 @@ class Pidato extends BaseController
             'pidato_detail_slug' => $slug,
             'pidato_detail_tgl_acara' => $this->request->getVar('pidato_detail_tgl_acara'),
             'pidato_detail_tempat' => $this->request->getVar('pidato_detail_tempat'),
+            'pidato_detail_file' => $namaSampul,
+            'pidato_detail_ext' => $ext,
         ]);
 
         if ($r) {

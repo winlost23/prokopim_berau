@@ -4,7 +4,8 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class User extends Model {
+class User extends Model
+{
 	protected $table = 'users';
 	protected $primaryKey = 'users_id';
 
@@ -15,10 +16,6 @@ class User extends Model {
 		'users_name',
 		'users_password',
 		'users_salt',
-		'users_email',
-		'users_level',
-		'users_nohp',
-		'users_nama',
 		'users_foto',
 		'users_lastlogin',
 		'users_lastip',
@@ -30,12 +27,9 @@ class User extends Model {
 	protected $deletedField = 'users_deleted';
 
 	protected $validationRules = [
-		'users_nama' => 'required|min_length[5]',
 		'users_name' => 'required|alpha_numeric|min_length[5]|is_unique[users.users_name,users_id,{users_id}]',
-		'users_email' => 'required|valid_email',
 		'users_password' => 'required|min_length[5]',
-		'users_level' => 'required',
-		'users_nohp' => 'required'
+		'users_level' => 'required'
 	];
 
 	protected $validationMessages = [];
@@ -44,7 +38,8 @@ class User extends Model {
 	protected $beforeInsert = ['hashPassword'];
 	protected $beforeUpdate = ['hashPassword'];
 
-	protected function hashPassword(array $data) {
+	protected function hashPassword(array $data)
+	{
 		if (!isset($data['data']['users_password'])) {
 			return $data;
 		}
@@ -54,7 +49,8 @@ class User extends Model {
 		return $data;
 	}
 
-	public function getOwnValidationRules() {
+	public function getOwnValidationRules()
+	{
 		$prefixed_array = [];
 		$len = strlen($this->table) + 1;
 
@@ -65,7 +61,8 @@ class User extends Model {
 		return $prefixed_array;
 	}
 
-	function generate_random_string($name_length = 25) {
+	function generate_random_string($name_length = 25)
+	{
 		$alpha_numeric = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwqyz1234567890~!@#$%^&*()_+';
 		return substr(str_shuffle($alpha_numeric), 0, $name_length);
 	}
