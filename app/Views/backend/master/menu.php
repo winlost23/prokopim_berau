@@ -78,6 +78,14 @@
                 <li class="nav-item"><a class="nav-link" href="<?= base_url('nimda/download/add') ?>"><i class="ti-control-record"></i>Tambah Download</a></li>
             </ul>
         </li>
+        <li>
+            <a href="javascript: void(0);"><i class="far fa-newspaper "></i><span>Penghargaan</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+            <ul class="nav-second-level" aria-expanded="false">
+                <li class="nav-item"><a class="nav-link" href="<?= base_url('nimda/penghargaan') ?>"><i class="ti-control-record"></i>List Penghargaan</a></li>
+                <li class="nav-item"><a class="nav-link" href="<?= base_url('nimda/penghargaan/add') ?>"><i class="ti-control-record"></i>Tambah Penghargaan</a></li>
+                <li class="nav-item"><a class="nav-link" href="<?= base_url('nimda/penghargaan/kategori') ?>"><i class="ti-control-record"></i>Kategori</a></li>
+            </ul>
+        </li>
 
         <li>
             <a href="javascript: void(0);"><i class="ti-user"></i><span>Users</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>

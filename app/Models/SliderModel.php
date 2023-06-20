@@ -13,7 +13,6 @@ class SliderModel extends Model
     protected $useSoftDeletes = true;
 
     protected $allowedFields = [
-        'users_id',
         'slider_judul_1',
         'slider_judul_2',
         'slider_gambar',

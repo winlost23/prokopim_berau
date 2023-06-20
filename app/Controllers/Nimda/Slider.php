@@ -29,8 +29,7 @@ class Slider extends BaseController
 
         $def = new Definisi();
         $data['slider'] = $this->sliderModel
-            ->join('users', 'slider.users_id = users.users_id')
-            ->orderby('slider.slider_id', 'desc')
+            ->orderby('slider_id', 'desc')
             ->findAll();
         $data['level'] = $def->level();
         $data['validation'] = \Config\Services::validation();
@@ -90,7 +89,6 @@ class Slider extends BaseController
         }
 
         $r = $this->sliderModel->save([
-            'users_id' => session()->userid,
             'slider_judul_1' => $this->request->getPost('slider_judul_1'),
             'slider_judul_2' => $this->request->getPost('slider_judul_2'),
             'slider_gambar' => $namaSampul,
@@ -160,7 +158,6 @@ class Slider extends BaseController
 
         $r = $this->sliderModel->save([
             'slider_id' => $id,
-            'users_id' => session()->userid,
             'slider_judul_1' => $this->request->getPost('slider_judul_1'),
             'slider_judul_2' => $this->request->getPost('slider_judul_2'),
             'slider_gambar' => $namaSampul,

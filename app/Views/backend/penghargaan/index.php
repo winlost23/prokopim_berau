@@ -26,10 +26,10 @@
                 <div class="float-right">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="<?= base_url() ?>/nimda">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Slider</li>
+                        <li class="breadcrumb-item active">Penghargaan</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Slider</h4>
+                <h4 class="page-title">Penghargaan</h4>
             </div>
             <!--end page-title-box-->
         </div>
@@ -41,8 +41,8 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="mt-0 header-title">List Slider</h4>
-                    <p class="text-muted mb-3">Berikut adalah semua data slider yang ada pada system ini...</p>
+                    <h4 class="mt-0 header-title">List Penghargaan</h4>
+                    <p class="text-muted mb-3">Berikut adalah semua data penghargaan yang ada pada system ini...</p>
                     <?php if (session()->getFlashdata('tipe')) : ?>
                         <div class="alert alert-outline-<?= session()->getFlashdata('tipe') ?> b-round" role="alert">
                             <?= session()->getFlashdata('pesan') ?>
@@ -52,9 +52,8 @@
                         <thead>
                             <tr>
                                 <th width="5%">No</th>
-                                <th>Text 1</th>
-                                <th>Text 2</th>
-                                <th>Gambar</th>
+                                <th>Judul</th>
+                                <th>Kategori</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -63,17 +62,15 @@
                         <tbody>
                             <?php
                             $nomor = 1;
-                            foreach ($slider as $u) :
+                            foreach ($penghargaan as $u) :
                             ?>
                                 <tr>
                                     <td><?= $nomor++ ?></td>
-                                    <td><?= $u->slider_judul_1 ?></td>
-                                    <td><?= $u->slider_judul_2 ?></td>
-                                    <td><img src="<?= base_url() ?>/img/slider/<?= $u->slider_gambar ?>" alt="" width="150"></td>
-
+                                    <td><?= $u->penghargaan_judul ?></td>
+                                    <td><?= $u->kategori_judul ?></td>
                                     <td class="text-center">
-                                        <a href="<?= base_url('nimda/slider/edit/' . $u->slider_id) ?>" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
-                                        <a href="<?= base_url('nimda/slider/delete/' . $u->slider_id) ?>" onclick="return confirm('are you sure?')"><i class="fas fa-trash-alt text-danger font-16"></i></a>
+                                        <a href="<?= base_url('nimda/penghargaan/edit/' . $u->penghargaan_id) ?>" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
+                                        <a href="<?= base_url('nimda/penghargaan/delete/' . $u->penghargaan_id) ?>" onclick="return confirm('are you sure?')"><i class="fas fa-trash-alt text-danger font-16"></i></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
