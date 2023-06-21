@@ -53,10 +53,9 @@
                             <tr>
                                 <th width="5%">No</th>
                                 <th>Nama</th>
-                                <th>Email</th>
-                                <th>Judul</th>
                                 <th>Pesan</th>
-                                <th>Action</th>
+                                <th>Admin Balas</th>
+                                <th>Balas</th>
                             </tr>
                         </thead>
 
@@ -64,19 +63,30 @@
                         <tbody>
                             <?php
 
+                            use App\Models\KontakModel;
+
+                            $this->kontakModel = new KontakModel();
+
                             $nomor = 1;
                             foreach ($kontak as $u) :
+                                $balas = $this->kontakModel->where('kontak_id_parent', $u->kontak_id)->where('kontak_sebagai', '2')->first();
                             ?>
                                 <tr>
                                     <td><?= $nomor++ ?></td>
-                                    <td><?= $u->kontak_kami_nama ?></td>
-                                    <td><?= $u->kontak_kami_email ?></td>
-                                    <td><?= $u->kontak_kami_judul ?></td>
-                                    <td><?= $u->kontak_kami_pesan ?></td>
-                                    <td class="text-center">
-                                        <a href="<?= base_url('nimda/kontak/edit/' . $u->kontak_kami_id) ?>" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
-                                        <a href="<?= base_url('nimda/kontak/delete/' . $u->kontak_kami_id) ?>" onclick="return confirm('are you sure?')"><i class="fas fa-trash-alt text-danger font-16"></i></a>
-                                    </td>
+                                    <td><?= $u->kontak_nama ?></td>
+                                    <td><?= $u->kontak_komentar ?></td>
+                                    <?php if ($balas) { ?>
+                                        <td><?= $balas->kontak_komentar ?></td>
+                                        <td class="text-center">
+                                            <a href="<?= base_url('nimda/kontak/balas/' . $u->kontak_id) ?>" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
+                                        </td>
+                                    <?php } else { ?>
+                                        <td style="color: brown;">Belum Dibalas</td>
+                                        <td class="text-center">
+                                            <a href="<?= base_url('nimda/kontak/balas/' . $u->kontak_id) ?>" class="mr-2"><i class="fas fa-edit text-success font-16"></i></a>
+                                        </td>
+                                    <?php } ?>
+
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>

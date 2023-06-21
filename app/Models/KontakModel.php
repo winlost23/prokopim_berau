@@ -6,17 +6,23 @@ use CodeIgniter\Model;
 
 class KontakModel extends Model
 {
-    protected $table = 'kontak_kami';
-    protected $primaryKey = 'kontak_kami_id';
+    protected $table = 'kontak';
+    protected $primaryKey = 'kontak_id';
 
     protected $returnType = 'object';
     protected $useSoftDeletes = true;
 
     protected $allowedFields = [
-        'kontak_kami_nama',
-        'kontak_kami_email',
-        'kontak_kami_judul',
-        'kontak_kami_pesan',
+        'kontak_nama',
+        'kontak_pekerjaan',
+        'kontak_telp',
+        'kontak_file',
+        'kontak_alamat',
+        'kontak_email',
+        'kontak_komentar',
+        'kontak_sebagai',
+        'kontak_show',
+        'kontak_id_parent',
     ];
 
     protected $useTimestamps = true;
