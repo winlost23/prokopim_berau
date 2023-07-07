@@ -13,7 +13,7 @@ class SessionViewerModel extends Model
     protected $useSoftDeletes = true;
 
     protected $allowedFields = [
-        'berita_id',
+        'berita_detail_id',
         'session_viewer_ip',
         'session_viewer_tgl',
     ];

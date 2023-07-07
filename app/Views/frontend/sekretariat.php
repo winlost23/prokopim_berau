@@ -26,12 +26,12 @@
                     <div class="single-post-box">
 
                         <div class="title-post">
-                            <h1><?= $konten->profil_judul ?></h1>
+                            <h1><?= $konten->sekretariat_judul ?></h1>
                         </div>
 
                         <div class="post-content">
 
-                            <?= $konten->profil_isi ?>
+                            <?= $konten->sekretariat_isi ?>
                         </div>
 
                         <div class="share-post-box">

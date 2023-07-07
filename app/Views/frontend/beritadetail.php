@@ -8,71 +8,103 @@
 
 <?= $this->section('content') ?>
 
-<main id="main">
+<section class="block-wrapper left-sidebar">
+    <div class="container">
+        <div class="row">
 
-    <!-- ======= Breadcrumbs ======= -->
-    <section class="breadcrumbs">
-        <div class="container">
+            <div class="col-sm-4">
 
-            <ol>
-                <li><a href="<?= base_url() ?>/home">Home</a></li>
-                <li>Berita</li>
-                <li><a href="<?= base_url() ?>/berita/<?= $dberita->kategori_slug ?>"><?= $dberita->kategori_slug ?></a></li>
-                <li><?= $databeritadetail->berita_slug ?></li>
-            </ol>
-            <h2><?= $databeritadetail->berita_judul ?></h2>
+                <?= $this->include('frontend/master/side') ?>
 
-        </div>
-    </section><!-- End Breadcrumbs -->
+            </div>
 
-    <!-- ======= Blog Single Section ======= -->
-    <section id="blog" class="blog">
-        <div class="container" data-aos="fade-up">
+            <div class="col-sm-8">
 
-            <div class="row">
+                <!-- block content -->
+                <div class="block-content">
 
-                <div class="col-lg-8 entries">
+                    <!-- single-post box -->
+                    <div class="single-post-box">
 
-                    <article class="entry entry-single">
-
-                        <div class="entry-img">
-                            <img src="<?= base_url() ?>/img/berita/<?= $databeritadetail->berita_gambar ?>" alt="" class="img-fluid">
+                        <div class="title-post">
+                            <h1><?= $konten->berita_detail_judul ?></h1>
+                            <ul class="post-tags">
+                                <?php
+                                $date = strtotime($konten->created_at);
+                                $newDate = date('d/M/Y h:i:s', $date);
+                                ?>
+                                <li><i class="fa fa-clock-o"></i><?= $newDate ?></li>
+                                <li><i class="fa fa-user"></i>Editor: <?= $konten->berita_detail_editor ?></li>
+                                <li><i class="fa fa-eye"></i><?= $konten->berita_detail_dibaca ?></li>
+                            </ul>
                         </div>
 
-                        <h2 class="entry-title">
-                            <?= $databeritadetail->berita_judul ?>
-                        </h2>
-
-
-
-                        <div class="entry-content">
-                            <?= $databeritadetail->berita_isi ?>
-
+                        <div class="share-post-box">
+                            <ul class="share-box">
+                                <li><i class="fa fa-share-alt"></i><span>Share Post</span></li>
+                                <li><a class="facebook" href="#"><i class="fa fa-facebook"></i><span>Share on Facebook</span></a></li>
+                                <li><a class="twitter" href="#"><i class="fa fa-twitter"></i><span>Share on Twitter</span></a></li>
+                                <li><a class="google" href="#"><i class="fa fa-google-plus"></i><span></span></a></li>
+                                <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i><span></span></a></li>
+                            </ul>
                         </div>
 
-                        <div class="entry-footer clearfix">
-
-
+                        <div class="post-gallery">
+                            <img src="<?= base_url('img/berita/' . $konten->berita_detail_gambar) ?>" alt="">
+                            <!-- <span class="image-caption">Cras eget sem nec dui volutpat ultrices.</span> -->
                         </div>
 
-                    </article><!-- End blog entry -->
+                        <div class="post-content">
 
+                            <?= $konten->berita_detail_isi ?>
+                        </div>
 
+                        <div class="share-post-box">
+                            <ul class="share-box">
+                                <li><i class="fa fa-share-alt"></i><span>Share Post</span></li>
+                                <li><a class="facebook" href="#"><i class="fa fa-facebook"></i>Share on Facebook</a></li>
+                                <li><a class="twitter" href="#"><i class="fa fa-twitter"></i>Share on Twitter</a></li>
+                                <li><a class="google" href="#"><i class="fa fa-google-plus"></i><span></span></a></li>
+                                <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i><span></span></a></li>
+                            </ul>
+                        </div>
 
-                </div><!-- End blog entries list -->
+                        <!-- carousel box -->
+                        <div class="carousel-box owl-wrapper">
+                            <div class="title-section">
+                                <h1><span>Berita Lainya</span></h1>
+                            </div>
+                            <div class="owl-carousel" data-num="3">
+                                <?php foreach ($lainya as $d) : ?>
+                                    <div class="item news-post image-post3">
+                                        <img src="<?= base_url('img/berita/' . $d->berita_detail_gambar) ?>" alt="">
+                                        <div class="hover-box">
+                                            <h2><a href="<?= base_url('berita/detail/' . $slug->berita_slug . '/' . $d->berita_detail_slug) ?>"><?= $d->berita_detail_judul ?></a></h2>
+                                            <ul class="post-tags">
+                                                <?php
+                                                $date = strtotime($d->created_at);
+                                                $newDate = date('d/M/Y h:i:s', $date);
+                                                ?>
+                                                <li><i class="fa fa-clock-o"></i><?= $newDate ?></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
 
-                <div class="col-lg-4">
+                            </div>
+                        </div>
+                        <!-- End carousel box -->
 
+                    </div>
+                    <!-- End single-post box -->
 
-                    <?= $this->include('frontend/master/side') ?>
-
-
-                </div><!-- End blog sidebar -->
+                </div>
+                <!-- End block content -->
 
             </div>
 
         </div>
-    </section><!-- End Blog Single Section -->
 
-</main><!-- End #main -->
+    </div>
+</section>
 <?= $this->endSection() ?>

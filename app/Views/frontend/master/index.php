@@ -1,73 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" class="no-js">
 
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Prokopim <?= $title ?></title>
 
-  <title>Bappeda <?= $title ?></title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <!-- Favicons -->
   <link href="<?= base_url() ?>/img/<?= $pengaturan->pengaturan_favicon ?>" rel="icon">
-  <link href="<?= base_url('front') ?>/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,400italic' rel='stylesheet' type='text/css'>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <?= $this->renderSection('css') ?>
+  <link rel="stylesheet" type="text/css" href="<?= base_url('front') ?>/css/bootstrap.min.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="<?= base_url('front') ?>/css/jquery.bxslider.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="<?= base_url('front') ?>/css/font-awesome.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="<?= base_url('front') ?>/css/magnific-popup.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="<?= base_url('front') ?>/css/owl.carousel.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="<?= base_url('front') ?>/css/owl.theme.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="<?= base_url('front') ?>/css/ticker-style.css" />
+  <link rel="stylesheet" type="text/css" href="<?= base_url('front') ?>/css/style.css" media="screen">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="<?= base_url('front') ?>/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="<?= base_url('front') ?>/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-  <link href="<?= base_url('front') ?>/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="<?= base_url('front') ?>/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="<?= base_url('front') ?>/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="<?= base_url('front') ?>/assets/vendor/venobox/venobox.css" rel="stylesheet">
-  <link href="<?= base_url('front') ?>/assets/vendor/aos/aos.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="<?= base_url('front') ?>/assets/css/style.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: Presento - v1.1.0
-  * Template URL: https://bootstrapmade.com/presento-bootstrap-corporate-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
-<body>
+<body class="boxed">
 
-  <!-- ======= Header ======= -->
-  <?= $this->include('frontend/master/header') ?>
-  <!-- End Header -->
+  <!-- Container -->
+  <div id="container">
 
-  <!-- #main -->
-  <?= $this->renderSection('content') ?>
-  <!-- End #main -->
+    <!-- ======= Header ======= -->
+    <?= $this->include('frontend/master/header') ?>
+    <!-- End Header -->
 
-  <!-- ======= Footer ======= -->
-  <?= $this->include('frontend/master/footer') ?>
-  <!-- End Footer -->
+    <!-- #main -->
+    <?= $this->renderSection('content') ?>
+    <!-- End #main -->
 
-  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+    <!-- ======= Footer ======= -->
+    <?= $this->include('frontend/master/footer') ?>
+    <!-- End Footer -->
 
-  <!-- Vendor JS Files -->
-  <script src="<?= base_url('front') ?>/assets/vendor/jquery/jquery.min.js"></script>
-  <script src="<?= base_url('front') ?>/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="<?= base_url('front') ?>/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-  <script src="<?= base_url('front') ?>/assets/vendor/php-email-form/validate.js"></script>
-  <script src="<?= base_url('front') ?>/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-  <script src="<?= base_url('front') ?>/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
-  <script src="<?= base_url('front') ?>/assets/vendor/counterup/counterup.min.js"></script>
-  <script src="<?= base_url('front') ?>/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="<?= base_url('front') ?>/assets/vendor/venobox/venobox.min.js"></script>
-  <script src="<?= base_url('front') ?>/assets/vendor/aos/aos.js"></script>
+  </div>
+  <!-- End Container -->
   <?= $this->renderSection('js') ?>
-
-  <!-- Template Main JS File -->
-  <script src="<?= base_url('front') ?>/assets/js/main.js"></script>
+  <script type="text/javascript" src="<?= base_url('front') ?>/js/jquery.min.js"></script>
+  <script type="text/javascript" src="<?= base_url('front') ?>/js/jquery.migrate.js"></script>
+  <script type="text/javascript" src="<?= base_url('front') ?>/js/jquery.bxslider.min.js"></script>
+  <script type="text/javascript" src="<?= base_url('front') ?>/js/jquery.magnific-popup.min.js"></script>
+  <script type="text/javascript" src="<?= base_url('front') ?>/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="<?= base_url('front') ?>/js/jquery.ticker.js"></script>
+  <script type="text/javascript" src="<?= base_url('front') ?>/js/jquery.imagesloaded.min.js"></script>
+  <script type="text/javascript" src="<?= base_url('front') ?>/js/jquery.isotope.min.js"></script>
+  <script type="text/javascript" src="<?= base_url('front') ?>/js/owl.carousel.min.js"></script>
+  <script type="text/javascript" src="<?= base_url('front') ?>/js/retina-1.1.0.min.js"></script>
+  <script type="text/javascript" src="<?= base_url('front') ?>/js/script.js"></script>
 
 </body>
 

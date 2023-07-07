@@ -11,12 +11,11 @@ use App\Models\KategoriModel;
 use App\Models\InfoModel;
 use App\Models\PengaturanModel;
 use App\Models\PengunjungModel;
-use App\Models\PidatoPantunModel;
 use App\Models\ProfilModel;
 use App\Models\SekretariatModel;
 use App\Models\UseronlineModel;
 
-class Profil extends BaseController
+class Sekretariat extends BaseController
 {
     protected $halaman = 'frontend/';
 
@@ -33,7 +32,6 @@ class Profil extends BaseController
         $this->PengunjungModel = new PengunjungModel();
         $this->beritadetailModel = new BeritaDetailModel();
         $this->agendaModel = new AgendaModel();
-        $this->pidatopantunModel = new PidatoPantunModel();
     }
 
     public function index($slug)
@@ -68,18 +66,15 @@ class Profil extends BaseController
         $data['agenda_baru'] = $this->agendaModel
             ->orderby('agenda_id', 'desc')
             ->limit(5)->findAll();
-        // $data['pantun_baru'] = $this->pidatopantunModel
-        //     ->join('berita', 'berita.berita_id = berita_detail.berita_id')
-        //     ->orderby('berita_detail.berita_detail_id', 'desc')
-        //     ->limit(5)->findAll();
+
         $data['berita_populer'] = $this->beritadetailModel
             ->join('berita', 'berita.berita_id = berita_detail.berita_id')
             ->orderby('berita_detail.berita_detail_dibaca', 'desc')
             ->limit(5)->findAll();
 
         //Konten
-        $data['konten'] = $this->profilModel
-            ->where('profil_slug', $slug)
+        $data['konten'] = $this->sekretariatModel
+            ->where('sekretariat_slug', $slug)
             ->first();
 
         //Statistik User
@@ -96,7 +91,7 @@ class Profil extends BaseController
         // //Online
         // $data['online'] = $this->UseronlineModel->distinct('usersonline_ip')->where('usersonline_file', $PHPSELF)->selectCount('usersonline_ip')->first();
 
-        return view($this->halaman . 'profil', $data);
+        return view($this->halaman . 'sekretariat', $data);
     }
 
     //--------------------------------------------------------------------
