@@ -3,15 +3,21 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\BeritaDetailModel;
+use App\Models\BeritaFotoModel;
 use App\Models\BeritaModel;
 use App\Models\DownloadModel;
+use App\Models\GaleriKegiatanFotoModel;
+use App\Models\GaleriKegiatanModel;
 use App\Models\KategoriModel;
 use App\Models\PengaturanModel;
+use App\Models\PenghargaanModel;
 use App\Models\PengunjungModel;
 use App\Models\ProfilModel;
 use App\Models\SekretariatModel;
 use App\Models\SliderModel;
 use App\Models\UseronlineModel;
+use App\Models\VideoKegiatanModel;
 
 class Home extends BaseController
 {
@@ -27,6 +33,13 @@ class Home extends BaseController
 		$this->downloadModel = new DownloadModel();
 		$this->UseronlineModel = new UseronlineModel();
 		$this->PengunjungModel = new PengunjungModel();
+		$this->sliderModel = new SliderModel();
+		$this->beritadetailModel = new BeritaDetailModel();
+		$this->galeriKegiatanFotoModel = new GaleriKegiatanFotoModel();
+		$this->beritaFotoModel = new BeritaFotoModel();
+		$this->videoKegiatanModel = new VideoKegiatanModel();
+		$this->penghargaanModel = new PenghargaanModel();
+		$this->galeriKegiatanModel = new GaleriKegiatanModel();
 	}
 
 	public function index()
@@ -35,6 +48,7 @@ class Home extends BaseController
 
 		$data['title'] = '';
 		// $data['menu'] = '';
+		// Menu
 		$data['pengaturan'] = $this->pengaturanModel
 			->first();
 		$data['profil'] = $this->profilModel
@@ -52,6 +66,38 @@ class Home extends BaseController
 		$data['download'] = $this->downloadModel
 			->orderby('download_id', 'asc')
 			->findAll();
+
+		//Slider
+		$data['slider'] = $this->sliderModel
+			->orderby('slider_id', 'desc')
+			->findAll();
+		//top
+		$data['berita_atas'] = $this->beritadetailModel
+			->join('berita', 'berita.berita_id = berita_detail.berita_id')
+			->orderby('berita_detail.berita_detail_id', 'desc')
+			->limit(4)->findAll();
+
+		//side
+		$data['jml_berita'] = $this->beritadetailModel->countAll();
+		$data['jml_galeri_foto'] = $this->galeriKegiatanFotoModel->countAll();
+		$data['jml_berita_foto'] = $this->beritaFotoModel->countAll();
+		$data['jml_video_kegiatan'] = $this->videoKegiatanModel->countAll();
+
+		//konten
+		$data['berita_foto'] = $this->beritaFotoModel
+			->orderby('berita_foto_id', 'desc')
+			->limit(4)->findAll();
+		$data['video_kegiatan'] = $this->videoKegiatanModel
+			->orderby('video_kegiatan_id', 'desc')
+			->limit(3)->findAll();
+		$data['penghargaan'] = $this->penghargaanModel
+			->join('kategori', 'kategori.kategori_id = penghargaan.kategori_id')
+			->orderby('penghargaan.penghargaan_id', 'desc')
+			->limit(6)->findAll();
+		$data['galeri_kegiatan'] = $this->galeriKegiatanModel
+			->orderby('galeri_kegiatan_id', 'desc')
+			->limit(4)->findAll();
+
 		// $data['info'] = $this->ketegoriModel
 		// 	->where('kategori_jenis', 'info')
 		// 	->findAll();

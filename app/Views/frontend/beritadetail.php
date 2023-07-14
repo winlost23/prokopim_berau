@@ -12,12 +12,6 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-sm-4">
-
-                <?= $this->include('frontend/master/side') ?>
-
-            </div>
-
             <div class="col-sm-8">
 
                 <!-- block content -->
@@ -100,6 +94,12 @@
 
                 </div>
                 <!-- End block content -->
+
+            </div>
+
+            <div class="col-sm-4">
+
+                <?= $this->include('frontend/master/side') ?>
 
             </div>
 
