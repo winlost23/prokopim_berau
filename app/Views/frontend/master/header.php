@@ -130,7 +130,7 @@
                                 <?php
                                 foreach ($kategori as $d) :
                                 ?>
-                                    <li><a href="<?= base_url('pidato/' . $d->kategori_slug) ?>"><?= $d->kategori_judul ?></a></li>
+                                    <li><a href="<?= base_url('pidato/index/' . $d->kategori_slug) ?>"><?= $d->kategori_judul ?></a></li>
                                 <?php
                                 endforeach;
                                 ?>
