@@ -153,7 +153,7 @@
                                 <?php
                                 foreach ($download as $d) :
                                 ?>
-                                    <li><a href="<?= base_url('download/' . $d->download_slug) ?>"><?= $d->download_judul ?></a></li>
+                                    <li><a href="<?= base_url('download/index/' . $d->download_slug) ?>"><?= $d->download_judul ?></a></li>
                                 <?php
                                 endforeach;
                                 ?>

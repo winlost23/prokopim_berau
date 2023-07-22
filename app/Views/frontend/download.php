@@ -21,7 +21,7 @@
                     <!-- forum box -->
                     <div class="forum-box">
                         <div class="title-section">
-                            <h1><span>Pidato</span></h1>
+                            <h1><span>Download</span></h1>
                         </div>
                         <div class="search-box">
                             <form role="search" class="search-form">
@@ -34,26 +34,29 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Judul</th>
+                                    <th>Nama</th>
+                                    <th>Ukuran</th>
+                                    <th>Tanggal</th>
+                                    <th>Tindakan</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                $no = 1;
                                 foreach ($konten as $d) : ?>
                                     <tr>
-                                        <td><?= $no++ ?></td>
+                                        <td><?= $nomor++ ?></td>
+                                        <td><?= $d->download_detail_judul ?></td>
+                                        <td><?= $d->download_detail_ukuran ?> Kb</td>
+                                        <td><?= $d->created_at ?></td>
                                         <td>
-                                            <span class="badge badge-pill rounded" style="background-color: #17a2b8; color: #fff;"><?= $d->kategori_judul ?></span> | <span class="badge badge-pill rounded" style="background-color: #dc3545; color: #fff;"><?= $d->pidato_detail_tgl_acara ?></span>
-                                            <p><?= $d->pidato_detail_judul ?></p>
-                                            <a href="<?= base_url('pidato/get_download/' . $d->pidato_detail_id) ?>" class="btn btn-danger btn-sm"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                            <a href="<?= base_url('pidato/detail/' . $d->kategori_slug . '/' . $d->pidato_detail_slug) ?>" class="btn btn-primary btn-sm"><i class="fa fa-book" aria-hidden="true"></i></a>
+                                            <a href="<?= base_url('download/get_download/' . $d->download_detail_id) ?>" class="btn btn-danger btn-sm"><i class="fa fa-download" aria-hidden="true"></i></a>
+
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
-
+                        <?= $pager->links('hal', 'paging') ?>
                     </div>
                     <!-- End forum box -->
 

@@ -15,7 +15,7 @@ use App\Models\ProfilModel;
 use App\Models\SekretariatModel;
 use App\Models\UseronlineModel;
 
-class Pidato extends BaseController
+class Agenda extends BaseController
 {
     protected $halaman = 'frontend/';
 
@@ -34,9 +34,10 @@ class Pidato extends BaseController
         $this->agendaModel = new AgendaModel();
         $this->pidatoDetailModel = new PidatoDetailModel();
         $this->pidatoPantunModel = new PidatoPantunModel();
+        $this->agendaModel = new AgendaModel();
     }
 
-    public function index($slug)
+    public function index()
     {
         $data['title'] = '| Pidato';
         $data['menu'] = 'kedua';
@@ -75,14 +76,13 @@ class Pidato extends BaseController
             ->limit(5)->findAll();
 
         //Content
-        $data['slug'] = $this->kategoriModel
-            ->where('kategori_slug', $slug)
-            ->first();
-        $data['konten'] = $this->pidatoDetailModel
-            ->join('kategori', 'kategori.kategori_id = pidato_detail.kategori_id')
-            ->where('pidato_detail.kategori_id', $data['slug']->kategori_id)
-            ->orderby('pidato_detail.pidato_detail_id', 'desc')
-            ->findAll();
+        $data['konten'] = $this->agendaModel
+            ->orderby('agenda_id', 'desc')
+            ->paginate(10, 'agenda');
+        // ->findAll();
+
+        $data['pager'] = $this->agendaModel->pager;
+        $data['nomor'] = nomor($this->request->getVar('page_agenda'), 10);
         //Statistik User
         // $PHPSELF = $_SERVER['PHP_SELF'];
         // $tgl = date("Y-m-d");
@@ -97,10 +97,10 @@ class Pidato extends BaseController
         // //Online
         // $data['online'] = $this->UseronlineModel->distinct('usersonline_ip')->where('usersonline_file', $PHPSELF)->selectCount('usersonline_ip')->first();
 
-        return view($this->halaman . 'pidato', $data);
+        return view($this->halaman . 'agenda', $data);
     }
 
-    public function detail($slugKategori, $slugKonten)
+    public function detail($slug)
     {
         $data['title'] = '| Detail Berita';
         $data['menu'] = 'kedua';
@@ -138,16 +138,11 @@ class Pidato extends BaseController
             ->orderby('berita_detail.berita_detail_dibaca', 'desc')
             ->limit(5)->findAll();
 
-        $data['konten'] = $this->pidatoDetailModel
-            ->join('kategori', 'kategori.kategori_id = pidato_detail.kategori_id')
-            ->where('pidato_detail.pidato_detail_slug', $slugKonten)
-            ->orderby('pidato_detail.pidato_detail_id', 'desc')
+        $data['konten'] = $this->agendaModel
+            ->where('agenda_slug', $slug)
             ->first();
-        $data['jml_pantun'] = $this->pidatoPantunModel
-            ->where('pidato_detail_id', $data['konten']->pidato_detail_id)
-            ->countAllResults();
 
-        return view($this->halaman . 'pidatodetail', $data);
+        return view($this->halaman . 'agendadetail', $data);
     }
 
     public function get_download($id)
