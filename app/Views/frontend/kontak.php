@@ -7,98 +7,82 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
+<!-- block-wrapper-section
+================================================== -->
+<section class="block-wrapper left-sidebar">
+    <div class="container">
+        <div class="row">
 
-<main id="main">
+            <div class="col-sm-8">
 
-    <!-- ======= Breadcrumbs ======= -->
-    <section class="breadcrumbs">
-        <div class="container">
+                <!-- block content -->
+                <div class="block-content">
 
-            <ol>
-                <li><a href="<?= base_url() ?>/home">Home</a></li>
-                <li>Kontak</li>
-            </ol>
-            <h2>Kontak Kami</h2>
-
-        </div>
-    </section><!-- End Breadcrumbs -->
-
-    <!-- ======= Blog Single Section ======= -->
-    <section id="contact" class="contact">
-        <div class="container" data-aos="fade-up">
-
-            <div class="section-title">
-                <h2>Kontak Kami</h2>
-                <p></p>
-            </div>
-
-            <div class="row" data-aos="fade-up" data-aos-delay="100">
-
-                <div class="col-lg-6">
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="info-box">
-                                <i class="bx bx-map"></i>
-                                <h3>Alamat Kami</h3>
-                                <p><?= $pengaturan->pengaturan_alamat ?></p>
+                    <!-- single-post box -->
+                    <div class="single-post-box">
+                        <!-- comment area box -->
+                        <div class="comment-area-box">
+                            <div class="title-section">
+                                <h1><span>Kontak Kami</span></h1>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="info-box mt-4">
-                                <i class="bx bx-envelope"></i>
-                                <h3>Email Kami</h3>
-                                <p><?= $pengaturan->pengaturan_email ?></p>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="info-box mt-4">
-                                <i class="bx bx-phone-call"></i>
-                                <h3>Telp Kami</h3>
-                                <p><?= $pengaturan->pengaturan_telp ?></p>
-                            </div>
+                            <ul class="comment-tree">
+                                <?php
+
+                                use App\Models\KontakModel;
+
+                                $this->kontakModel = new KontakModel();
+                                foreach ($konten as $d) :
+                                    $balas = $this->kontakModel
+                                        ->where('kontak_id_parent', $d->kontak_id)
+                                        ->first(); ?>
+                                    <li>
+                                        <div class="comment-box">
+                                            <img alt="" src="<?= base_url('img/img_avatar3.png') ?>">
+                                            <div class="comment-content">
+                                                <h4><?= $d->kontak_nama ?></h4>
+                                                <h5><?= $d->kontak_pekerjaan ?></h5>
+                                                <span><i class="fa fa-clock-o"></i><?= $d->created_at ?></span>
+                                                <?= $d->kontak_komentar ?>
+                                            </div>
+                                        </div>
+                                        <?php if ($balas) { ?>
+                                            <ul class="depth">
+                                                <li>
+                                                    <div class="comment-box">
+                                                        <img alt="" src="<?= base_url('img/welcome.png') ?>">
+                                                        <div class="comment-content">
+                                                            <h4>Admin</h4>
+                                                            <span><i class="fa fa-clock-o"></i><?= $balas->created_at ?></span>
+                                                            <?= $balas->kontak_komentar ?>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        <?php } ?>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
                         </div>
                     </div>
+                    <!-- End comment area box -->
+                    <!-- pagination box -->
+                    <?= $pager->links('hal', 'paging') ?>
+                    <!-- End Pagination box -->
 
                 </div>
+                <!-- End block content -->
 
-                <div class="col-lg-6">
-                    <?php if (session()->getFlashdata('tipe')) : ?>
-                        <div class="alert alert-outline-<?= session()->getFlashdata('tipe') ?> b-round" role="alert">
-                            <?= session()->getFlashdata('pesan') ?>
-                        </div>
-                    <?php endif; ?>
-                    <form action="<?= base_url('kontak/save') ?>" method="post" role="form" class="php-email-form">
-                        <div class="form-row">
-                            <div class="col form-group">
-                                <input type="text" name="kontak_kami_nama" class="form-control" id="kontak_kami_nama" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                                <div class="validate"></div>
-                            </div>
-                            <div class="col form-group">
-                                <input type="email" class="form-control" name="kontak_kami_email" id="kontak_kami_email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
-                                <div class="validate"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="kontak_kami_judul" id="kontak_kami_judul" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-                            <div class="validate"></div>
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control" name="kontak_kami_pesan" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
-                            <div class="validate"></div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="loading">Loading</div>
-                            <div class="sent-message">Your message has been sent. Thank you!</div>
-                        </div>
-                        <div class="text-center"><button type="submit">Kirim Pesan</button></div>
-                    </form>
-                </div>
+            </div>
+
+            <div class="col-sm-4">
+
+                <?= $this->include('frontend/master/side') ?>
 
             </div>
 
         </div>
-    </section><!-- End Blog Single Section -->
 
-</main><!-- End #main -->
+    </div>
+</section>
+
 <?= $this->endSection() ?>
