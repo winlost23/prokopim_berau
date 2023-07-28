@@ -17,7 +17,6 @@
 
                 <!-- block content -->
                 <div class="block-content">
-
                     <!-- forum box -->
                     <div class="forum-box">
                         <div class="title-section">

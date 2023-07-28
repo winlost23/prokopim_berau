@@ -49,6 +49,65 @@ class Kontak extends BaseController
         return view($this->halaman . 'edit', $data);
     }
 
+    public function simpan()
+    {
+        //dd($id);
+        // validation input
+        if (!$this->validate([
+            'download_detail_judul' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Judul harus diisi'
+                ]
+            ],
+            'download_detail_file' => [
+                'rules' => [
+                    'uploaded[download_detail_file]',
+                    'mime_in[download_detail_file,application/pdf,application/msword,application/zip,application/rar,]',
+                    'max_size[download_detail_file,6124]',
+                ],
+                'errors' => [
+                    'max_size' => 'Ukuran gambar tidak boleh lebih dari 5M',
+                    'mime_in' => 'File yang di upload harus berupa (pdf / docx / zip / rar)'
+                ]
+            ],
+        ])) {
+            return redirect()->to(site_url('/kontak/form/'))->withInput();
+        }
+
+        $fileSampul = $this->request->getFile('download_detail_file');
+        //apakah tidak ada gambar yang diupload
+        if ($fileSampul->getError() == 4) {
+            $namaSampul = NULL;
+            $size_kb = NULL;
+            $ext = NULL;
+        } else {
+            //generate nama sampul random
+            $namaSampul = $fileSampul->getRandomName();
+            //pindahkan file ke folder img
+            $fileSampul->move('file/download', $namaSampul);
+            $size_kb = $fileSampul->getSize('kb');
+            $ext = $fileSampul->getClientExtension();
+        }
+
+        $slug = url_title($this->request->getPost('download_detail_judul'), '-', true);
+        $r = $this->downloaddetailModel->save([
+            'download_id' => $id,
+            'download_detail_judul' => $this->request->getPost('download_detail_judul'),
+            'download_detail_slug' => $slug,
+            'download_detail_ukuran' => $size_kb,
+            'download_detail_ext' => $ext,
+            'download_detail_file' => $namaSampul,
+        ]);
+        if ($r) {
+            $this->notif('Data Download Berhasil disimpan.');
+        } else {
+            $this->notif('Data Download Gagal disimpan.', 'error');
+        }
+
+        return redirect()->to(site_url('/kontak/form/'));
+    }
+
     public function update($id)
     {
 
