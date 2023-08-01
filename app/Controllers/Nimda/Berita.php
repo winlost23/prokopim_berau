@@ -170,10 +170,9 @@ class Berita extends BaseController
         // validation input
         if (!$this->validate([
             'berita_detail_judul' => [
-                'rules' => 'required|is_unique[berita.berita_detail_judul]',
+                'rules' => 'required',
                 'errors' => [
                     'required' => '{field} Judul berita harus diisi',
-                    'is_unique' => '{field} Judul berita sudah terdaftar'
                 ]
             ],
             'berita_detail_isi' => [
